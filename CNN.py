@@ -6,6 +6,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torch.utils.data import Dataset, DataLoader
+import time
 
 
 seismodata_file = "merged/merge.hdf5"
@@ -37,10 +38,12 @@ class SeismoDataset(Dataset):
 
         # Retrieve waveform from HDF5
         dataset = self.hdf5_file.get('data/' + str(trace_name))
-        waveform = np.array(dataset)  # should be shape (3, 6000)
+        waveform = np.array(dataset)  # (6000, 3) with [E, N, Z] columns
+
+        waveform = waveform[:, [2, 1, 0]]  # → still (6000, 3)
 
         # Convert to torch tensor
-        waveform = torch.tensor(waveform, dtype=torch.float32)
+        waveform = torch.tensor(waveform, dtype=torch.float32).permute(1, 0) # → (3, 6000)
 
         # Convert label string to int
         label = self.label_map[label_str]
@@ -59,7 +62,7 @@ dtfl = h5py.File(seismodata_file, 'r')
 #FORMAT: (trace_name : str , index_in_csv : int, LOW/MED/HIGH/NOISE : str)
 trainingData = readListFromFile('trainSet.txt')
 validationData = readListFromFile('validationSet.txt')
-testingData = readListFromFile('testSet')
+testingData = readListFromFile('testSet.txt')
 
 train_dataset = SeismoDataset(trainingData, dtfl, label_map)
 val_dataset = SeismoDataset(validationData, dtfl, label_map)
@@ -99,3 +102,99 @@ class SeismoCNN(nn.Module):
         x = F.relu(self.fc1(x))
         x = self.dropout(x)
         return self.fc2(x)
+
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+model = SeismoCNN(num_classes=4).to(device)
+criterion = nn.CrossEntropyLoss()
+optimizer = torch.optim.Adam(model.parameters(), lr=0.001, weight_decay=1e-5)  # weight_decay = L2 regularization
+
+num_epochs = 10
+
+class timeKeeper:
+    def __init__(self, name, totalLaps, incrementAmount = 1):
+        self.startTime = time.time()
+        self.name = name
+        self.lapsDone = 0
+        self.totalLaps = totalLaps
+        self.incrementAmount = incrementAmount
+
+    def timeElapsed(self):
+        return time.time() - self.startTime
+    
+    def addLap(self, amount = 1):
+        self.lapsDone += amount
+
+    def getAvgLapTime(self): #Returns time in seconds
+        avgTime = (time.time() - self.startTime) / (1 if self.lapsDone == 0 else self.lapsDone)  
+        return avgTime
+
+    def formattedTime(self, time):
+        if time < 60: return (time, "Sec") #In seconds
+        elif time < 3600: return (time / 60, "Min") #In minutes
+        elif time < 60 * 60 * 24: return (time / 60 / 60, "Hours") #In hours
+        else: return (time / 60 / 60 / 24, "Days") #In days
+
+    def eta(self):
+        avgTime = self.getAvgLapTime()
+        lapsLeft = self.totalLaps - self.lapsDone
+        timeLeft = avgTime * lapsLeft
+        return self.formattedTime(timeLeft)
+
+    def activeLap(self):
+        self.addLap()
+        return self.getAvgLapTime()
+    
+    def timerBroadcast(self):
+        self.addLap(self.incrementAmount)
+        time, context = self.eta()
+        print(f"[{self.name}] | ETA {time:.2f} {context} | Progress: {((self.lapsDone / self.totalLaps)*100):.2f}%")
+    
+
+
+
+totalProgressTimer = timeKeeper("TOTAL TIMER", num_epochs, 1)
+for epoch in range(num_epochs):
+    model.train()
+    running_loss = 0.0
+    correct = 0
+    total = 0
+    trainingTimer = timeKeeper(f"TRAINING EPOCH {epoch}", len(train_loader), 1)
+    for waveforms, labels in train_loader:
+        waveforms, labels = waveforms.to(device), labels.to(device)
+
+        waveforms = waveforms.float()  # (N, 3, 6000)
+        
+        optimizer.zero_grad()
+        outputs = model(waveforms)
+        loss = criterion(outputs, labels)
+        loss.backward()
+        optimizer.step()
+
+        running_loss += loss.item()
+        _, predicted = torch.max(outputs.data, 1)
+        total += labels.size(0)
+        correct += (predicted == labels).sum().item()
+
+        trainingTimer.timerBroadcast()
+
+    train_acc = correct / total
+    print(f"Epoch [{epoch+1}/{num_epochs}], Loss: {running_loss:.4f}, Train Acc: {train_acc:.4f}")
+
+    # Optional: Validation phase
+    model.eval()
+    val_correct = 0
+    val_total = 0
+    validationTimer = timeKeeper(f"VALIDATION Ep{epoch}", len(val_loader), 1)
+    with torch.no_grad():
+        for waveforms, labels in val_loader:
+            waveforms, labels = waveforms.to(device), labels.to(device)
+            waveforms = waveforms.float()
+            outputs = model(waveforms)
+            _, predicted = torch.max(outputs.data, 1)
+            val_total += labels.size(0)
+            val_correct += (predicted == labels).sum().item()
+            validationTimer.timerBroadcast()
+    val_acc = val_correct / val_total
+
+    totalProgressTimer.timerBroadcast()
+    print(f"Validation Accuracy: {val_acc:.4f}")
