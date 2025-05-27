@@ -108,57 +108,17 @@ model = SeismoCNN(num_classes=4).to(device)
 criterion = nn.CrossEntropyLoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=0.001, weight_decay=1e-5)  # weight_decay = L2 regularization
 
-num_epochs = 10
+num_epochs = 10    
 
-class timeKeeper:
-    def __init__(self, name, totalLaps, incrementAmount = 1):
-        self.startTime = time.time()
-        self.name = name
-        self.lapsDone = 0
-        self.totalLaps = totalLaps
-        self.incrementAmount = incrementAmount
+import TimeKeeper as timeKeeper
 
-    def timeElapsed(self):
-        return time.time() - self.startTime
-    
-    def addLap(self, amount = 1):
-        self.lapsDone += amount
-
-    def getAvgLapTime(self): #Returns time in seconds
-        avgTime = (time.time() - self.startTime) / (1 if self.lapsDone == 0 else self.lapsDone)  
-        return avgTime
-
-    def formattedTime(self, time):
-        if time < 60: return (time, "Sec") #In seconds
-        elif time < 3600: return (time / 60, "Min") #In minutes
-        elif time < 60 * 60 * 24: return (time / 60 / 60, "Hours") #In hours
-        else: return (time / 60 / 60 / 24, "Days") #In days
-
-    def eta(self):
-        avgTime = self.getAvgLapTime()
-        lapsLeft = self.totalLaps - self.lapsDone
-        timeLeft = avgTime * lapsLeft
-        return self.formattedTime(timeLeft)
-
-    def activeLap(self):
-        self.addLap()
-        return self.getAvgLapTime()
-    
-    def timerBroadcast(self):
-        self.addLap(self.incrementAmount)
-        time, context = self.eta()
-        print(f"[{self.name}] | ETA {time:.2f} {context} | Progress: {((self.lapsDone / self.totalLaps)*100):.2f}%")
-    
-
-
-
-totalProgressTimer = timeKeeper("TOTAL TIMER", num_epochs, 1)
-for epoch in range(num_epochs):
+totalProgressTimer = timeKeeper.timeKeeper("TOTAL TIMER", num_epochs, 1)
+for epoch in range(num_epochs): #Training Loop
     model.train()
     running_loss = 0.0
     correct = 0
     total = 0
-    trainingTimer = timeKeeper(f"TRAINING EPOCH {epoch}", len(train_loader), 1)
+    trainingTimer = timeKeeper.timeKeeper(f"TRAINING EPOCH {epoch}", len(train_loader), 1)
     for waveforms, labels in train_loader:
         waveforms, labels = waveforms.to(device), labels.to(device)
 
@@ -176,15 +136,15 @@ for epoch in range(num_epochs):
         correct += (predicted == labels).sum().item()
 
         trainingTimer.timerBroadcast()
-
+    trainingTimer.endTimer()
     train_acc = correct / total
     print(f"Epoch [{epoch+1}/{num_epochs}], Loss: {running_loss:.4f}, Train Acc: {train_acc:.4f}")
 
-    # Optional: Validation phase
+    #Validation phase
     model.eval()
     val_correct = 0
     val_total = 0
-    validationTimer = timeKeeper(f"VALIDATION Ep{epoch}", len(val_loader), 1)
+    validationTimer = timeKeeper.timeKeeper(f"VALIDATION Ep{epoch}", len(val_loader), 1)
     with torch.no_grad():
         for waveforms, labels in val_loader:
             waveforms, labels = waveforms.to(device), labels.to(device)
@@ -194,7 +154,14 @@ for epoch in range(num_epochs):
             val_total += labels.size(0)
             val_correct += (predicted == labels).sum().item()
             validationTimer.timerBroadcast()
+    validationTimer.endTimer()
     val_acc = val_correct / val_total
 
     totalProgressTimer.timerBroadcast()
     print(f"Validation Accuracy: {val_acc:.4f}")
+totalProgressTimer.endTimer()
+torch.save(model.state_dict(), "seismo_cnn_weights.pth")
+# model = SeismoCNN(num_classes=4)  # Recreate the model architecture
+# model.load_state_dict(torch.load("seismo_cnn_weights.pth"))
+# model.to(device)  # Don't forget this if using CUDA
+# model.eval()  # Set to evaluation mode for inference
