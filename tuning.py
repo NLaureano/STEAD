@@ -214,10 +214,9 @@ def testHyperparameters(hyperparameter_in_question, hp_range):
 
     return hp_range[bestHP], TLosses, TAccs, VLosses, VAccs
     
-
 totalProgressTimer = timeKeeper.timeKeeper("TOTAL TUNING TIMER", 2, 1)
-learning_rates = [1e-4, 5e-4, 1e-3, 3e-3]
-weight_decay_rates = [0, 1e-6, 1e-4, 1e-3]
+learning_rates = [1e-4, 5e-4, 1e-3, 3e-3] #Default = 1e-4
+weight_decay_rates = [0, 1e-6, 1e-4, 1e-3] #Default = 1e-5
 # Test learning rates and save results
 best_lr, lrTrainingLosses, lrTrainingAcc, lrValidationLosses, lrValidationAcc = testHyperparameters("lr", learning_rates)
 with open("best_results.txt", "w") as f:

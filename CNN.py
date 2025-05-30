@@ -106,7 +106,7 @@ class SeismoCNN(nn.Module):
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model = SeismoCNN(num_classes=4).to(device)
 criterion = nn.CrossEntropyLoss()
-optimizer = torch.optim.Adam(model.parameters(), lr=0.001, weight_decay=1e-5)  # weight_decay = L2 regularization
+optimizer = torch.optim.Adam(model.parameters(), lr=0.0001, weight_decay=1e-5)  # weight_decay = L2 regularization
 
 num_epochs = 10    
 

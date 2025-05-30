@@ -6,14 +6,21 @@ Training_Accuracies = [[0.7289428571428571, 0.7939142857142857, 0.8184, 0.831514
 Validation_Losses = [[0.6271174035634205, 0.5896686325027685, 0.523745452617384, 0.5571746066877037, 0.5230749579751568, 0.6285985271642163, 0.6500235662149016, 0.5262037481471991, 0.49357809591445195, 0.5077917370352016], [1.872074731216309, 0.7414536414442549, 0.7337636250029703, 0.7094546020220799, 1.0167939792013472, 0.5955478801469135, 0.6761993825625462, 0.5525030018702434, 0.5761520881561717, 0.5346236705400382], [0.7448047016076981, 1.0641262547890091, 0.6455805394679878, 0.6867536638572718, 0.6816401791990183, 0.707659982571936, 0.7040170328632281, 0.5721463266831295, 0.8069588844278816, 0.6675466004830257], [0.8653136119721042, 1.0585165038989608, 0.7571059402766501, 0.7568725573409135, 0.7346201937669402, 0.7861211067362196, 0.5777224520589136, 1.1513410559885062, 0.585433115435254, 0.633964406456917]]
 Validation_Accuracies = [[0.7362, 0.763, 0.8076, 0.7988, 0.7818, 0.7914, 0.7744, 0.8102, 0.8174, 0.8316], [0.543, 0.7966, 0.7748, 0.7838, 0.7204, 0.8058, 0.7974, 0.8142, 0.772, 0.788], [0.7374, 0.781, 0.7622, 0.7312, 0.749, 0.7324, 0.7094, 0.7832, 0.7846, 0.7396], [0.7308, 0.6718, 0.7656, 0.7778, 0.7432, 0.7564, 0.7672, 0.3064, 0.783, 0.7494]]
 
-learning_rates = ['1e-4', '5e-4', '1e-3', '3e-3']
+Wd_Training_Losses = [[841.2095796465874, 568.2857456505299, 483.4862739741802, 457.5858663097024, 453.79579884558916, 413.00536911934614, 392.6221082061529, 409.8684525862336, 380.01608975976706, 367.42171075195074], [831.6726414561272, 575.2061340212822, 487.39878426492214, 455.71661818027496, 434.4057615250349, 419.019670791924, 403.54747304320335, 411.90213610231876, 406.8481795862317, 399.38269159942865], [786.9764240682125, 593.3104690313339, 538.3415373712778, 497.5261242315173, 473.00523414462805, 434.5810895934701, 462.0147164352238, 408.1247585788369, 393.1515834480524, 384.5563756301999], [809.4327759891748, 580.9143016934395, 486.47448921203613, 457.16357868909836, 445.563773997128, 414.90574729442596, 408.2754151150584, 393.12286181747913, 394.4019312784076, 379.91125517338514], [828.1145914793015, 597.3572927564383, 515.882151633501, 465.69048123061657, 440.66657135635614, 438.30880331248045, 426.96665946394205, 429.21672513335943, 412.44569125398993, 405.3992765918374]]
+Wd_Training_Accuracies = [[0.7157428571428571, 0.7896857142857143, 0.8162571428571429, 0.8236857142857142, 0.8285714285714286, 0.8378285714285715, 0.8428, 0.8438285714285715, 0.8508, 0.8574285714285714], [0.7174571428571429, 0.7867714285714286, 0.8147714285714286, 0.8252857142857143, 0.835, 0.8399714285714286, 0.8456857142857143, 0.8446285714285714, 0.8459714285714286, 0.8480571428571428], [0.7315142857142857, 0.7834571428571429, 0.8023428571428571, 0.818, 0.8291714285714286, 0.8359142857142857, 0.8328285714285715, 0.8451428571428572, 0.8510571428571428, 0.8547714285714286], [0.7236, 0.7889714285714285, 0.8194, 0.8281142857142857, 0.8336, 0.8425142857142857, 0.8438, 0.8500571428571428, 0.8523142857142857, 0.8555714285714285], [0.7246857142857143, 0.7851142857142858, 0.8047142857142857, 0.825, 0.8326285714285714, 0.8351714285714286, 0.8388285714285715, 0.8382571428571428, 0.8424, 0.8452571428571428]]
+Wd_Validation_Losses = [[0.7448047016076981, 1.0641262547890091, 0.6455805394679878, 0.6867536638572718, 0.6816401791990183, 0.707659982571936, 0.7040170328632281, 0.5721463266831295, 0.8069588844278816, 0.6675466004830257], [0.7634917664679752, 0.6521409674055257, 0.6752629919796233, 0.5442843482752514, 0.6654253274581994, 0.5629707329022656, 1.2454043419877434, 0.7241836755898348, 0.6206670518323874, 0.596277787427234], [0.671646724840638, 0.6770330184394386, 0.822033466806837, 0.669817436272931, 0.5637118267785212, 0.5941981938993854, 0.5685651527278742, 0.7726061647864664, 0.522720488867942, 0.5324620972773072], [0.7426626613944959, 0.7684425377542046, 0.6554242628774826, 0.6032808061428131, 0.7442352769860796, 0.7014497489116753, 0.8654787819951203, 0.6660745072231931, 0.7246752438271881, 0.6487540388183229], [0.8125096806295359, 0.7083148985721504, 0.6673957503335491, 0.6413318949520208, 0.5861541786391264, 0.6779263230266085, 0.7645442657599784, 0.5079788653903706, 0.6431882809491674, 0.6505132339372757]]
+Wd_Validation_Accuracies = [[0.7374, 0.781, 0.7622, 0.7312, 0.749, 0.7324, 0.7094, 0.7832, 0.7846, 0.7396], [0.7672, 0.7448, 0.7562, 0.7862, 0.7714, 0.796, 0.7326, 0.7714, 0.782, 0.7348], [0.7424, 0.7738, 0.6848, 0.7464, 0.796, 0.8128, 0.7946, 0.728, 0.8096, 0.7822], [0.7356, 0.724, 0.7478, 0.7808, 0.774, 0.7906, 0.774, 0.7976, 0.7594, 0.7826], [0.7174, 0.7832, 0.7638, 0.7842, 0.797, 0.775, 0.7752, 0.7918, 0.7824, 0.7122]]
+
+
+learning_rates = ['1e-4', '5e-4', '1e-3 [DEFAULT]', '3e-3']
+weightDecayRates = ['1e-5 [DEFAULT]', '0', '1e-6', '1e-4', '1e-3'] #Default = 1e-5
 epochs = list(range(1, 11))
 
 # Plot Training Loss
 plt.figure(figsize=(10, 6))
 for i, loss in enumerate(Training_Losses):
     plt.plot(epochs, loss, label=f'lr={learning_rates[i]}')
-plt.title("Training Loss vs Epochs")
+plt.title("[By Learning Rate] Training Loss vs Epochs")
 plt.xlabel("Epoch")
 plt.ylabel("Loss")
 plt.legend()
@@ -25,7 +32,7 @@ plt.show()
 plt.figure(figsize=(10, 6))
 for i, acc in enumerate(Training_Accuracies):
     plt.plot(epochs, acc, label=f'lr={learning_rates[i]}')
-plt.title("Training Accuracy vs Epochs")
+plt.title("[By Learning Rate] Training Accuracy vs Epochs")
 plt.xlabel("Epoch")
 plt.ylabel("Accuracy")
 plt.legend()
@@ -37,7 +44,7 @@ plt.show()
 plt.figure(figsize=(10, 6))
 for i, val_loss in enumerate(Validation_Losses):
     plt.plot(epochs, val_loss, label=f'lr={learning_rates[i]}')
-plt.title("Validation Loss vs Epochs")
+plt.title("[By Learning Rate] Validation Loss vs Epochs")
 plt.xlabel("Epoch")
 plt.ylabel("Loss")
 plt.legend()
@@ -49,9 +56,112 @@ plt.show()
 plt.figure(figsize=(10, 6))
 for i, val_acc in enumerate(Validation_Accuracies):
     plt.plot(epochs, val_acc, label=f'lr={learning_rates[i]}')
-plt.title("Validation Accuracy vs Epochs")
+plt.title("[By Learning Rate] Validation Accuracy vs Epochs")
 plt.xlabel("Epoch")
 plt.ylabel("Accuracy")
+plt.legend()
+plt.grid(True)
+plt.tight_layout()
+plt.show()
+
+#---------------------------------------------------------------
+
+# WD Plot Training Loss
+plt.figure(figsize=(10, 6))
+for i, loss in enumerate(Wd_Training_Losses):
+    plt.plot(epochs, loss, label=f'wd={weightDecayRates[i]}')
+plt.title("[By Weight Decay] Training Loss vs Epochs")
+plt.xlabel("Epoch")
+plt.ylabel("Loss")
+plt.legend()
+plt.grid(True)
+plt.tight_layout()
+plt.show()
+
+# WD Plot Training Accuracy
+plt.figure(figsize=(10, 6))
+for i, acc in enumerate(Wd_Training_Accuracies):
+    plt.plot(epochs, acc, label=f'wd={weightDecayRates[i]}')
+plt.title("[By Weight Decay] Training Accuracy vs Epochs")
+plt.xlabel("Epoch")
+plt.ylabel("Accuracy")
+plt.legend()
+plt.grid(True)
+plt.tight_layout()
+plt.show()
+
+# WD Plot Validation Loss
+plt.figure(figsize=(10, 6))
+for i, val_loss in enumerate(Wd_Validation_Losses):
+    plt.plot(epochs, val_loss, label=f'wd={weightDecayRates[i]}')
+plt.title("[By Weight Decay] Validation Loss vs Epochs")
+plt.xlabel("Epoch")
+plt.ylabel("Loss")
+plt.legend()
+plt.grid(True)
+plt.tight_layout()
+plt.show()
+
+# WD Plot Validation Accuracy
+plt.figure(figsize=(10, 6))
+for i, val_acc in enumerate(Wd_Validation_Accuracies):
+    plt.plot(epochs, val_acc, label=f'wd={weightDecayRates[i]}')
+plt.title("[By Weight Decay] Validation Accuracy vs Epochs")
+plt.xlabel("Epoch")
+plt.ylabel("Accuracy")
+plt.legend()
+plt.grid(True)
+plt.tight_layout()
+plt.show()
+
+#---------------------------On scales 0-1
+# Plot Training Accuracy
+plt.figure(figsize=(10, 6))
+for i, acc in enumerate(Training_Accuracies):
+    plt.plot(epochs, acc, label=f'lr={learning_rates[i]}')
+plt.title("[0 to 1] [By Learning Rate] Training Accuracy vs Epochs")
+plt.xlabel("Epoch")
+plt.ylabel("Accuracy")
+plt.ylim(0, 1)
+plt.legend()
+plt.grid(True)
+plt.tight_layout()
+plt.show()
+
+# Plot Validation Accuracy
+plt.figure(figsize=(10, 6))
+for i, val_acc in enumerate(Validation_Accuracies):
+    plt.plot(epochs, val_acc, label=f'lr={learning_rates[i]}')
+plt.title("[0 to 1] [By Learning Rate] Validation Accuracy vs Epochs")
+plt.xlabel("Epoch")
+plt.ylabel("Accuracy")
+plt.ylim(0, 1)
+plt.legend()
+plt.grid(True)
+plt.tight_layout()
+plt.show()
+
+# WD Plot Training Accuracy
+plt.figure(figsize=(10, 6))
+for i, acc in enumerate(Wd_Training_Accuracies):
+    plt.plot(epochs, acc, label=f'wd={weightDecayRates[i]}')
+plt.title("[0 to 1] [By Weight Decay] Training Accuracy vs Epochs")
+plt.xlabel("Epoch")
+plt.ylabel("Accuracy")
+plt.ylim(0, 1)
+plt.legend()
+plt.grid(True)
+plt.tight_layout()
+plt.show()
+
+# WD Plot Validation Accuracy
+plt.figure(figsize=(10, 6))
+for i, val_acc in enumerate(Wd_Validation_Accuracies):
+    plt.plot(epochs, val_acc, label=f'wd={weightDecayRates[i]}')
+plt.title("[0 to 1] [By Weight Decay] Validation Accuracy vs Epochs")
+plt.xlabel("Epoch")
+plt.ylabel("Accuracy")
+plt.ylim(0, 1)
 plt.legend()
 plt.grid(True)
 plt.tight_layout()
