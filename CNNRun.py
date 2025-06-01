@@ -1,6 +1,6 @@
 import pandas as pd
 import h5py
-import SeismoCNNImport as SeismoCNN
+import SeismoCNNImport
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -18,7 +18,7 @@ label_map = {
 
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-model = SeismoCNN(num_classes=4)  # Recreate the model architecture
+model = SeismoCNNImport.SeismoCNN(num_classes=4)  # Recreate the model architecture
 model.load_state_dict(torch.load("seismo_cnn_weights.pth"))
 model.to(device)  
 model.eval()  # Set to evaluation mode for inference

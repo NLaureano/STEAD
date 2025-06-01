@@ -1,6 +1,6 @@
 import pandas as pd
 import h5py
-import SeismoCNNImport as SeismoCNN
+import SeismoCNNImport
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -31,8 +31,8 @@ trainingData = readListFromFile('trainSet.txt')
 validationData = readListFromFile('validationSet.txt')
 #testingData = readListFromFile('testSet.txt')
 
-train_dataset = SeismoCNN.SeismoDataset(trainingData, dtfl, label_map)
-val_dataset = SeismoCNN.SeismoDataset(validationData, dtfl, label_map)
+train_dataset = SeismoCNNImport.SeismoDataset(trainingData, dtfl, label_map)
+val_dataset = SeismoCNNImport.SeismoDataset(validationData, dtfl, label_map)
 #test_dataset = SeismoCNN.SeismoDataset(testingData, dtfl, label_map)
 
 train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True)
@@ -40,9 +40,9 @@ val_loader = DataLoader(val_dataset, batch_size=32)
 #test_loader = DataLoader(test_dataset, batch_size=32)
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-model = SeismoCNN(num_classes=4).to(device)
+model = SeismoCNNImport.SeismoCNN(num_classes=4).to(device)
 criterion = nn.CrossEntropyLoss()
-optimizer = torch.optim.Adam(model.parameters(), lr=0.0001, weight_decay=1e-5)  # weight_decay = L2 regularization
+optimizer = torch.optim.Adam(model.parameters(), lr=1e-4, weight_decay=1e-4)  # weight_decay = L2 regularization
 
 num_epochs = 10    
 
