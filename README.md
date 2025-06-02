@@ -39,7 +39,7 @@ Once the `merged/` directory is in place, run the following scripts **in order**
 
 | File/Directory         | Description |
 |------------------------|-------------|
-| `Tuning.py`            | Performs hyperparameter tuning on 8 different configurations to optimize model performance. (on NVIDIA GeForce RTX 3070 Ti): ~14.2 Hours|
+| `Tuning.py`            | Performs hyperparameter tuning on 8 different configurations to optimize model performance. (on NVIDIA GeForce RTX 3070 Ti): ~14.2 Hours |
 | `plotting.py`          | Generates visualizations (accuracy/loss curves) of tuning results. Outputs are saved to `Pictures/`. |
 | `TuningStats/`         | Stores `.npy` and `.txt` files with training/validation statistics from tuning runs. |
 | `Pictures/`            | Contains saved plots of model performance across hyperparameter settings. |
@@ -52,6 +52,7 @@ Once the `merged/` directory is in place, run the following scripts **in order**
 
 ## Citation
 
-If using this work please cite the STEAD dataset:
+If using this work please cite this project and the STEAD dataset:
+Laureano N. (2025) Seismic Event Classification Using Convolutional Neural Networks on Multichannel Waveform Data https://github.com/NLaureano/SeismicCNN
 
 Mousavi, S. M., Sheng, Y., Zhu, W., Beroza G.C., (2019).  STanford EArthquake Dataset (STEAD): A Global Data Set of Seismic Signals for AI,  IEEE Access, doi:10.1109/ACCESS.2019.2947848
