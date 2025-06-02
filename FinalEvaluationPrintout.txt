@@ -1,0 +1,9 @@
+Validation Accuracy: 0.7476
+
+Confusion Matrix (Predicted \ Actual):
+             LOW     MED    HIGH   NOISE   Total
+     LOW     615     550       2      30    1197
+     MED      18    1004      77      18    1117
+    HIGH       0     330    1905       0    2235
+   NOISE    1367     116      16    3952    5451
+   Total    2000    2000    2000    4000       0
