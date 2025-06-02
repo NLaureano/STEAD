@@ -31,7 +31,7 @@ Once the `merged/` directory is in place, run the following scripts **in order**
 ### 3. `CNNRun.py`
 - Loads the trained model from `seismo_cnn_weights.pth`.
 - Evaluates performance on the testing set.
-- **Output**: Evaluation results printed to terminal and saved in `FinalEvaluationPrintout.txt`.
+- **Output**: Evaluation results printed to terminal. A copy is saved in `FinalEvaluationPrintout.txt`.
 
 ---
 
