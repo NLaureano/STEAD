@@ -1,5 +1,11 @@
 # SeismoCNN – Seismic Event Classification with Deep Learning
 
+## About
+
+This repository contains code and data processing tools for the undergraduate research project:
+**Seismic Event Classification Using Convolutional Neural Networks on Multichannel Waveform Data**  
+[Read the full report (PDF)](./Seismic_Event_Classification_Using_Convolutional_Neural_Networks_on_Multichannel_Waveform_Data.pdf)
+
 This repository is a **modified fork of the official STEAD (STanford EArthquake Dataset) repository**. The original contents of the forked repository have been relocated to the `INFO/` directory. The current focus of this project is the **classification of seismic waveform data** into four categories: `Noise`, `Low`, `Medium`, and `High` magnitude earthquakes using a Convolutional Neural Network (CNN).
 CNN development by Nicholas Laureano
 ---
@@ -52,7 +58,14 @@ Once the `merged/` directory is in place, run the following scripts **in order**
 
 ## Citation
 
-If using this work please cite this project and the STEAD dataset:
-Laureano N. (2025) Seismic Event Classification Using Convolutional Neural Networks on Multichannel Waveform Data https://github.com/NLaureano/SeismicCNN
+If you use this project or any of its components in your own work, please cite this repository and the STEAD dataset as follows:
 
-Mousavi, S. M., Sheng, Y., Zhu, W., Beroza G.C., (2019).  STanford EArthquake Dataset (STEAD): A Global Data Set of Seismic Signals for AI,  IEEE Access, doi:10.1109/ACCESS.2019.2947848
+**Project Citation**  
+> Laureano, N. (2025). *Seismic Event Classification Using Convolutional Neural Networks on Multichannel Waveform Data*. GitHub repository: [https://github.com/NLaureano/SeismicCNN](https://github.com/NLaureano/SeismicCNN)
+
+**STEAD Dataset Citation**  
+> Mousavi, S. M., Sheng, Y., Zhu, W., & Beroza, G. C. (2019). STanford EArthquake Dataset (STEAD): A Global Data Set of Seismic Signals for AI. *IEEE Access*, [https://doi.org/10.1109/ACCESS.2019.2947848](https://doi.org/10.1109/ACCESS.2019.2947848)
+
+---
+
+*Note: This project is not a peer-reviewed publication but represents undergraduate research publicly shared for reproducibility and educational purposes.*
