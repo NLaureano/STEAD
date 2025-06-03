@@ -6,9 +6,10 @@ This repository contains code and data processing tools for the undergraduate re
 **Seismic Event Classification Using Convolutional Neural Networks on Multichannel Waveform Data**  
 [Read the full report (PDF)](./Seismic_Event_Classification_Using_Convolutional_Neural_Networks_on_Multichannel_Waveform_Data.pdf)
 
-This repository is a **modified fork of the official STEAD (STanford EArthquake Dataset) repository**. The original contents of the forked repository have been relocated to the `INFO/` directory. The current focus of this project is the **classification of seismic waveform data** into four categories: `Noise`, `Low`, `Medium`, and `High` magnitude earthquakes using a Convolutional Neural Network (CNN).
-CNN development by Nicholas Laureano
----
+This repository is a **modified fork of the official STEAD (STanford EArthquake Dataset) repository**. The original contents of the forked repository have been relocated to the `INFO/` directory. 
+
+The current focus of this project is the **classification of seismic waveform data** into four categories: `Noise`, `Low`, `Medium`, and `High` magnitude earthquakes using a Convolutional Neural Network (CNN).
+
 
 ## Prerequisites
 
