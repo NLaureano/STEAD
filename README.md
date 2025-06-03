@@ -17,7 +17,7 @@ To fully utilize this repository on a local machine, follow these steps:
 
 1. **Follow the setup instructions from the original STEAD repository** (see `INFO/`).
 2. **Download and include the full STEAD dataset**:
-   - Ensure the `<100GB>` `merged/` directory containing the full labeled dataset is placed in the root directory of this repo.
+   - Ensure the `~91GB` `merged/` directory containing the full labeled dataset is placed in the root directory of this repo.
 
 ---
 
